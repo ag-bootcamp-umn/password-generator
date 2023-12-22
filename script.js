@@ -49,18 +49,24 @@ function generatePassword() {
   } else {
 
     // prompt user for password character types and add those chosen to charSet string
-    for (var i = 0; i < characters.length; i++) {
-      var currentType = characters[i];
-      var confirmation = confirm(
-        "Would you like to use " + currentType.type + " characters?"
-      );
-      if (confirmation) {
-        charSet += currentType.set;
+    function getUserCharTypes() {
+      for (var i = 0; i < characters.length; i++) {
+        var currentType = characters[i];
+        var confirmation = confirm(
+          "Would you like to use " + currentType.type + " characters?"
+        );
+        if (confirmation) {
+          charSet += currentType.set;
+        }
+      }
+
+      if (charSet === '') {
+        alert('Please choose at least one character type');
+        getUserCharTypes();
       }
     }
 
-    console.log(charSet);
-
+    getUserCharTypes();
     // Select characters randomly from charSet string
 
     for (var i = 0; i < passLength; i++) {
@@ -68,6 +74,6 @@ function generatePassword() {
       password += charSet.charAt(selection);
     }
 
-    console.log(password);
+    return password;
   }
 }

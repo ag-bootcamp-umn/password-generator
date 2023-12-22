@@ -7,7 +7,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
@@ -15,66 +14,60 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
 
-  var lowerChars = 'abcdefghijklmnopqrstuvwxyz';
-  var upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var numChars = '0123456789';
-  var specialChars = '`!@#$%^&*()_-+={[}]|\\:;"\'<,>.?/';
+  var characters = [
+    {
+      type: "lower-case",
+      set: "abcdefghijklmnopqrstuvwxyz",
+    },
+    {
+      type: "upper-case",
+      set: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    },
+    {
+      type: "numerical",
+      set: "0123456789",
+    },
+    {
+      type: "special",
+      set: "`!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/",
+    },
+  ];
 
   // Character set to be used to create password
-  var charSet = '';
-
-  var password = '';
-
-  // Function to add a random character for each confirmed character type to the password, and to add that character set to the password criteria
-  function addChar(set) {
-    var place = Math.floor(Math.random()
-    * set.length + 1);
-    password += set.charAt(place);
-    charSet += set;
-  }
+  var charSet = "";
+  var password = "";
 
   // prompt user for length
 
-  var passLength = prompt('How long would you like your password to be? Please enter a number from 8 to 128.');
+  var passLength = prompt(
+    "How long would you like your password to be? Please enter a number from 8 to 128."
+  );
 
   if (passLength < 8 || passLength > 128) {
-    alert('Incorrect Length');
+    alert("Incorrect Length");
     return generatePassword();
   } else {
 
-    // prompt user for password character types
-    var lowers = confirm('Would you like your password to include lower-case characters?');
-    if (lowers) { 
-       addChar(lowerChars);
+    // prompt user for password character types and add those chosen to charSet string
+    for (var i = 0; i < characters.length; i++) {
+      var currentType = characters[i];
+      var confirmation = confirm(
+        "Would you like to use " + currentType.type + " characters?"
+      );
+      if (confirmation) {
+        charSet += currentType.set;
+      }
     }
 
-    var uppers = confirm('Would you like your password to include upper-case characters?');
-    if (uppers) {
-      addChar(upperChars);
-    }
+    console.log(charSet);
 
-    var nums = confirm('Would you like your password to include numerical characters?');
-    if (nums) {
-      addChar(numChars);
-    }
-
-    var specials = confirm('Would you like your password to include special characters?');
-    if (specials) {
-      addChar(specialChars);
-    }
-
-    // Select characters randomly
+    // Select characters randomly from charSet string
 
     for (var i = 0; i < passLength; i++) {
-      var selection = Math.floor(Math.random()
-      * charSet.length + 1);
+      var selection = Math.floor(Math.random() * charSet.length + 1);
       password += charSet.charAt(selection);
     }
 
     console.log(password);
   }
-
-
-
-
 }

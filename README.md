@@ -11,3 +11,6 @@ Usage of this app is simple; click on the "Generate Password" button, follow the
 ![Screenshot of the app](<Screenshot 2023-12-22 222937.png>)
 
 ## Links
+- [Github Repository](https://github.com/ag-bootcamp-umn/password-generator)
+- [Deployment on Github Pages](https://ag-bootcamp-umn.github.io/password-generator/)
+

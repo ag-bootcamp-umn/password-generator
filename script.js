@@ -9,7 +9,6 @@ function writePassword() {
   passwordText.value = password;
 }
 
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
@@ -18,6 +17,11 @@ function generatePassword() {
 // THE VARIABLES ///////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
+  var charSet = "";
+  var password = "";
+  var passLength = 0;
+
+  // Character types
   var characters = [
     {
       type: "lower-case",
@@ -36,11 +40,6 @@ function generatePassword() {
       set: "`!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/",
     },
   ];
-
-  // Character set to be used to create password
-  var charSet = "";
-  var password = "";
-  var passLength = 0;
 
   // THE FUNCTIONS ///////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
@@ -79,17 +78,6 @@ function generatePassword() {
 
   // THE LOGIC ///////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
-
-  // if ( passLength >= 8 && passLength <= 128) {
-  //   getUserCharTypes();
-  //   createPassword();
-  // } else if (passLength > 0) {
-  //       alert("Incorrect Length");
-  //   return generatePassword();
-  // } else {
-  //   console.log('passLength: ' + passLength);
-  //   console.log('password: ' + password);
-  // }
 
   getUserPassLength();
 
